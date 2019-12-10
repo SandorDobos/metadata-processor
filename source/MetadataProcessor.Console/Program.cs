@@ -149,6 +149,19 @@ namespace nanoFramework.Tools.MetadataProcessor.Console
                     throw;
                 }
             }
+
+            internal void DumpExports(string fileName)
+            {
+                try
+                {
+                }
+                catch (Exception)
+                {
+                    System.Console.Error.WriteLine(
+                        "Unable to generate and write dependency graph for assembly file '{0}'.", fileName);
+                    throw;
+                }
+            }
         }
 
         public static void Main(string[] args)
@@ -185,6 +198,7 @@ namespace nanoFramework.Tools.MetadataProcessor.Console
                     System.Console.WriteLine("-excludeClassByName <class-name>                      Removes the class from an assembly.");
                     System.Console.WriteLine("-generateskeleton                                     Generate skeleton files with stubs to add native code for an assembly.");
                     System.Console.WriteLine("-generateDependency                                   Generates an XML file with the relationship between assemblies.");
+                    System.Console.WriteLine("-dumpExports                                          Generates a report of an assembly's metadata in a more readable format.");
                     System.Console.WriteLine("-minimize                                             Minimizes the assembly, removing unwanted elements.");
                     System.Console.WriteLine("-verbose                                              Outputs each command before executing it.");
                     System.Console.WriteLine("");
@@ -240,6 +254,10 @@ namespace nanoFramework.Tools.MetadataProcessor.Console
                 else if (arg == "-generatedependency" && i + 1 < args.Length)
                 {
                     md.GenerateDependency(args[++i]);
+                }
+                else if (arg == "-dumpexports" && i + 1 < args.Length)
+                {
+                    md.DumpExports(args[++i]);
                 }
                 else
                 {
