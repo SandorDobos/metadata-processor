@@ -67,7 +67,7 @@ namespace nanoFramework.Tools.MetadataProcessor.Tests.Tables
             CollectionAssert.AreEqual(
                 expectedThingsWritten.ToArray(), 
                 writer.ThingsWritten.ToArray(),
-                String.Join(", ", writer.ThingsWritten.Select(i => $"{i.ToString()} ({i.GetType().ToString()})")));
+                String.Join(", ", writer.ThingsWritten.Select((i, idx) => $"[{idx}]: {i.ToString()} ({i.GetType().ToString()})")));
         }
 
 
@@ -116,7 +116,7 @@ namespace nanoFramework.Tools.MetadataProcessor.Tests.Tables
             CollectionAssert.AreEqual(
                 expectedThingsWritten.ToArray(),
                 writer.ThingsWritten.ToArray(),
-                String.Join(", ", writer.ThingsWritten.Select(i => $"{i.ToString()} ({i.GetType().ToString()})")));
+                String.Join(", ", writer.ThingsWritten.Select((i, idx) => $"[{idx}]: {i.ToString()} ({i.GetType().ToString()})")));
         }
 
 
@@ -163,7 +163,7 @@ namespace nanoFramework.Tools.MetadataProcessor.Tests.Tables
             CollectionAssert.AreEqual(
                 expectedThingsWritten.ToArray(),
                 writer.ThingsWritten.ToArray(),
-                String.Join(", ", writer.ThingsWritten.Select(i => $"{i.ToString()} ({i.GetType().ToString()})")));
+                String.Join(", ", writer.ThingsWritten.Select((i, idx) => $"[{idx}]: {i.ToString()} ({i.GetType().ToString()})")));
         }
     }
 
