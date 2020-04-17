@@ -66,6 +66,7 @@
     <Compile Include="MockNanoBinaryWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tables\nanoAttributesTableTests.cs" />
+    <Compile Include="Tables\nanoReferenceTableBaseTests.cs" />
     <Compile Include="TestObjectHelper.cs" />
   </ItemGroup>
   <ItemGroup>
