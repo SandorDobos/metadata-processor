@@ -34,11 +34,5 @@ namespace nanoFramework.Tools.MetadataProcessor.Tests
             AssemblyDefinition ret = AssemblyDefinition.ReadAssembly(Assembly.GetExecutingAssembly().Location);
             return ret;
         }
-
-        public static MockNanoBinaryWriter GetMockNanoBinaryWriter()
-        {
-            MockNanoBinaryWriter ret = new MockNanoBinaryWriter(new BinaryWriter(Stream.Null));
-            return ret;
-        }
     }
 }
