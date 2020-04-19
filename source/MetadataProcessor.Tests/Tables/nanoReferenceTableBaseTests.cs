@@ -3,6 +3,8 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mono.Cecil;
+using System.IO;
+using System.Text;
 
 namespace nanoFramework.Tools.MetadataProcessor.Tests.Tables
 {
@@ -41,6 +43,32 @@ namespace nanoFramework.Tools.MetadataProcessor.Tests.Tables
             });
 
             CollectionAssert.AreEqual(items.ToArray(), forEachCalledOnItems.ToArray());
+        }
+
+        [TestMethod]
+        public void WriteTest()
+        {
+            var items = new List<object>() { 3, 2, 1 };
+
+            var comparer = new ObjectComparer();
+            var context = TestObjectHelper.GetInitializedNanoTablesContext();
+            var iut = new TestNanoReferenceTable(items, comparer, context);
+            using (var ms = new MemoryStream())
+            {
+                using (var bw = new System.IO.BinaryWriter(ms, Encoding.Default, true))
+                {
+                    var writer = nanoBinaryWriter.CreateLittleEndianBinaryWriter(bw);
+
+                    // test
+                    iut.Write(writer);
+
+                    bw.Flush();
+
+                }
+
+                var bytesWritten = ms.ToArray();
+                CollectionAssert.AreEqual(new byte[] { 0x33, 0, 0x32, 0, 0x31, 0 }, bytesWritten, String.Join(", ", bytesWritten.Select(i => i.ToString("X"))));
+            }
         }
 
         private class TestNanoReferenceTable : nanoReferenceTableBase<object>
